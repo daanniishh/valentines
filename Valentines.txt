@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      max-width: 360px;
+      width: 90%;
+      animation: pop 1s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #444;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .yes:hover {
+      background: #e63950;
+      transform: scale(1.05);
+    }
+
+    .no {
+      background: #eee;
+      color: #333;
+      position: relative;
+    }
+
+    .no:hover {
+      position: absolute;
+      left: Math.random() * 200 + 'px';
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 20px;
+      animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_1c6c2b2b3d.mp3?filename=romantic-piano-ambient-11157.mp3" type="audio/mpeg">
+  </audio>
+  <div class="card" id="card">
+    <h1>Hey Maryam ❤️</h1>
+    <p>
+      From the moment you came into my life, everything felt warmer and happier.
+      So today, I just want to ask you something straight from my heart.
+    </p>
+    <h2>Will you be my Valentine? 💖</h2>
+    <br />
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">Yes 😍</button>
+      <button class="no" onmouseover="moveNo(this)">No 🙈</button>
+    </div>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    function sayYes() {
+      window.location.href = '#love';
+      document.body.innerHTML = `
+        <style>
+          body { display:flex; align-items:center; justify-content:center; height:100vh; background:linear-gradient(135deg,#ff758c,#ff7eb3); font-family:Poppins,sans-serif; }
+          .page { background:white; padding:40px 30px; border-radius:20px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.2); max-width:360px; width:90%; animation: pop 1s ease; }
+          h1 { color:#ff4d6d; margin-bottom:15px; }
+          p { color:#444; font-size:16px; margin-bottom:20px; }
+          .heart { position:fixed; bottom:-20px; font-size:18px; animation: float 4s linear infinite; color:#ff4d6d; }
+          @keyframes float { from { transform:translateY(0); opacity:1; } to { transform:translateY(-110vh); opacity:0; } }
+        </style>
+        <div class='page'>
+          <h1>She said YES 💖</h1>
+          <p>Maryam, thank you for choosing me.
+          This just became my favorite moment ever.</p>
+          <h2>— Danish ❤️</h2>
+        </div>
+      `;
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = 'Maryam 💕 Danish';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, 300);
+    }
+
+    function moveNo(btn) {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function createHearts() {
+      const hearts = document.getElementById('hearts');
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        hearts.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }, 300);
+    }
+  </script>
+</body>
+</html>
